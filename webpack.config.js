@@ -1,5 +1,4 @@
 import path from 'path';
-import nodeExternals from 'webpack-node-externals';
 
 export default {
   mode: 'development',
@@ -21,8 +20,14 @@ export default {
             test: /\.ejs$/, 
             use: 'ejs-loader?variable=data' 
         },
+        {
+          test: /\.m?js$/,
+          exclude: /(node_modules)/,
+          use: {
+            loader: 'babel-loader',
+          }
+        }
     ],
   },
   devtool: 'eval-source-map',
-  externals: [nodeExternals()]
 };
